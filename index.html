@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>SHINE</title>
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- iPhone -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SHINE">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/icon-192.png">
+
+<!-- Crítico: negro sólido y contenido oculto hasta que todo cargue -->
+<style>html{background:#000}body{opacity:0;background:#000;margin:0}</style>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <main class="stage">
+    <!-- 1. Inicio: el toque activa pantalla completa (Android/Chrome) -->
+    <section id="start" class="screen" role="button" tabindex="0" aria-label="Toca para entrar">
+      <h1 class="brand">SHINE</h1>
+      <p class="tap">Toca para entrar</p>
+    </section>
+
+    <!-- 2. Tarjeta que se voltea -->
+    <section id="scan" class="screen" hidden>
+      <div class="flip" aria-hidden="true">
+        <div class="inner">
+          <div class="face front"><span class="mark">SHINE</span><span class="ln l1"></span><span class="ln l2"></span></div>
+          <div class="face back"><span class="mark">SHINE</span><em>Tecnología que transforma ideas.</em></div>
+        </div>
+      </div>
+      <p id="status" class="status" aria-live="polite">Abriendo tarjeta</p>
+      <div class="bar" aria-hidden="true"><b id="fill"></b></div>
+    </section>
+  </main>
+
+  <!-- 3. Link tree embebido: sin cambiar de URL, se mantiene la pantalla completa -->
+  <div id="app" hidden><iframe id="frame" title="SHINE" allow="clipboard-write" referrerpolicy="no-referrer"></iframe></div>
+  <button id="exit" class="exit" hidden aria-label="Salir">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
+  <!-- 4. Aviso iPhone -->
+  <aside id="ios" class="ios" hidden>
+    <span>Para verlo sin barras: toca <b>Compartir</b> y luego <b>Añadir a pantalla de inicio</b>.</span>
+    <button id="ios-x" aria-label="Cerrar aviso">×</button>
+  </aside>
+
+  <script src="/app.js"></script>
+</body>
+</html>
